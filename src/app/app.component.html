@@ -1,44 +1,4 @@
-<input type="text" [(ngModel)]="usuario">
-<br>
-<input type="text" [(ngModel)]="numero">
-<p>{{numero | exponential}}</p> 
-<br/>
-<h1>Bienvenido {{usuario}}</h1>
+<router-outlet></router-outlet>
 
-<div *ngIf="usuario === 'juan'">
- esto es un div:  {{10 * 23 }}
-</div>
-<br/>
-<div [ngSwitch]="usuario">
-  <p *ngSwitchCase ="'juan'">este es juan </p>
-  <p *ngSwitchCase ="'pedro'">este es pedro</p>
-  <p *ngSwitchCase="'julian'">este es Julian</p>
-  <p *ngSwitchDefault>No esta identificado</p> 
-</div>
 
-<div [ngSwitch]="usuario">
-  <p *ngSwitchCase="'nicolas'">este es nicolas</p>
-  <p *ngSwitchCase="'julian'">este es julian</p>
-  <p *ngSwitchCase="'camilo'">este es camilo</p>
-  <p *ngSwitchDefault>no hay match</p>
-</div>
-<br/>
-<button (click)="addItem()">Add Item</button>
-<ul>
-  <li *ngIf="nombres.length === 0">La lista está vacía</li>
-  <li *ngFor="let nombre of nombres; index as i">{{nombre }} {{i}}
-    <button (click)="deleteItem(i)">Remove ítem</button>
-  </li>
-</ul>
-<br/>
-
-<!--div *ngFor="let product of products">
-  {{ product.title }}
-  <img [src]="product.image" alt="imagen"> 
-  {{ product.price}}
-</div-->
-
-<div class="product-grid">
-  <app-product *ngFor="let product of products" (productClicked)="clickProduct($event)" [product]="product"></app-product>
-</div>
 
