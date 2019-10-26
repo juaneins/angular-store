@@ -31,7 +31,10 @@ import { LayoutComponent } from './layout/layout.component';
     PageNotFoundComponent,
     ProductDetailComponent,
     LayoutComponent],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule],
   providers: [],
   bootstrap: [AppComponent]
 })
