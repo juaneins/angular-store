@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ExponentialPipe } from '../shared/pipes/exponential/exponential.pipe';
 
 @Component({
   selector: 'app-demo',
