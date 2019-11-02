@@ -17,8 +17,17 @@ product: Product;
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       const id = params.id;
-      this.product = this.productsService.getProduct(id);
-      console.log(this.product);
+      this.fetchProduct(id);
+      // this.product = this.productsService.getProduct(id);
+      // console.log(this.product);
+    });
+  }
+
+  fetchProduct(id: string) {
+    return this.productsService.getProduct(id)
+    .subscribe(product => {
+      this.product = product;
+      console.log('En fetch product: ' + this.product);
     });
   }
 }
