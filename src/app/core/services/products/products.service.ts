@@ -57,11 +57,15 @@ export class ProductsService {
 
   getAllProducts() {
     // return this.products;
-    return this.http.get<Product[]>(environment.url_api + '/products/');
+    return this.http.get<Product[]>(`${environment.url_api}/products/`);
   }
 
   getProduct(id: string) {
     // return this.products.find(item => id === item.id);
-    return this.http.get<Product>(environment.url_api + `/products/${id}`);
+    return this.http.get<Product>(`${environment.url_api}/products/${id}`);
+  }
+
+  createProduct(product: Product) {
+    return this.http.post(`${environment.url_api}/products/`, product);
   }
 }

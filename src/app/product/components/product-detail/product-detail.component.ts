@@ -30,4 +30,23 @@ product: Product;
       console.log('En fetch product: ' + this.product);
     });
   }
+
+  createProduct() {
+    const newProduct: Product = {
+      /*  id: product.id,
+      description: product.description,
+      image: product.image,
+      price: product.price,
+      title: product.title */
+      id: '15',
+      image: 'assets/images/stickers1.png',
+      title: 'Stickers 15',
+      price: 80000,
+      description: 'Stickers 15'
+    };
+    return this.productsService.createProduct(newProduct)
+    .subscribe(product => {
+      console.log(product);
+    });
+  }
 }
