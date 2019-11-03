@@ -9,8 +9,7 @@ import { Product } from '../../../core/models/product.model';
   styleUrls: ['./product-detail.component.scss']
 })
 export class ProductDetailComponent implements OnInit {
-
-product: Product;
+  product: Product;
 
   constructor(private route: ActivatedRoute, private productsService: ProductsService) {}
 
@@ -24,8 +23,7 @@ product: Product;
   }
 
   fetchProduct(id: string) {
-    return this.productsService.getProduct(id)
-    .subscribe(product => {
+    return this.productsService.getProduct(id).subscribe(product => {
       this.product = product;
       console.log('En fetch product: ' + this.product);
     });
@@ -33,20 +31,30 @@ product: Product;
 
   createProduct() {
     const newProduct: Product = {
-      /*  id: product.id,
-      description: product.description,
-      image: product.image,
-      price: product.price,
-      title: product.title */
       id: '15',
       image: 'assets/images/stickers1.png',
       title: 'Stickers 15',
       price: 80000,
       description: 'Stickers 15'
     };
-    return this.productsService.createProduct(newProduct)
-    .subscribe(product => {
+    return this.productsService.createProduct(newProduct).subscribe(product => {
       console.log(product);
+    });
+  }
+
+  updateProduct() {
+    const updateProduct: Partial<Product> = {
+      price: 2,
+      description: 'edit Sticker 15'
+    };
+    return this.productsService.updateProduct('15', updateProduct).subscribe(product => {
+      console.log(product);
+    });
+  }
+
+  deleteProduct() {
+    return this.productsService.deleteProduct('15').subscribe(respuesta => {
+      console.log(respuesta);
     });
   }
 }
