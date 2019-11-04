@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ProductsService } from 'src/app/core/services/products/products.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-product',
@@ -10,7 +12,8 @@ export class FormProductComponent implements OnInit {
 
   formulario: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { 
+  constructor(private formBuilder: FormBuilder, private productsService: ProductsService,
+    private router: Router) { 
     this.buildForm();
   }
 
@@ -25,6 +28,19 @@ export class FormProductComponent implements OnInit {
       image: '',
       description: ['',[Validators.required]]
     });
+  }
+
+  saveProduct(event: Event) {
+    event.preventDefault();
+    if (this.formulario.valid) {
+      this.productsService.createProduct(this.formulario.value).subscribe(
+        newProduct => {
+          console.log("Nuevo producto" + newProduct);
+          this.router.navigate(['./admin/products']);
+        }
+      );
+    }
+   
   }
 
 }
