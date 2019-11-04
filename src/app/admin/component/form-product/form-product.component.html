@@ -22,8 +22,12 @@
         <div class="row">
             <div class="col-xs">
                 <mat-form-field>
-                    <input formControlName="price" matInput type="text"  placeholder="Price">
+                    <input formControlName="price" matInput type="text" placeholder="Price">
                 </mat-form-field>
+                <div *ngIf="priceField.errors && priceField.dirty">
+                    <p *ngIf="priceField.hasError('price_invalid')">Valor inválido</p>
+                    <p *ngIf="priceField.hasError('required')">Valor requerido</p>
+                </div>
             </div>
         </div>
         <div class="row">
@@ -33,7 +37,7 @@
                 </mat-form-field>
             </div>
         </div>
-       <div class="row">
+        <div class="row">
             <div class="col-xs">
                 <mat-form-field>
                     <textarea formControlName="description" matInput placeholder="Ingrese la descripción"></textarea>
@@ -41,7 +45,7 @@
             </div>
         </div>
         <mat-card-actions>
-            <button mat-raised-button type="submit">Guardar</button>
+            <button [disabled]="formulario.invalid" mat-raised-button type="submit">Guardar</button>
         </mat-card-actions>
 
     </mat-card-content>
