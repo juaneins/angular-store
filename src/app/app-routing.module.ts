@@ -19,13 +19,11 @@ const routes: Routes = [
         loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
       },
       {
-        path: 'products',
-        canActivate: [AdminGuard],
+        path: 'products',      
         loadChildren: () => import('./product/product.module').then(m => m.ProductModule)
       },
       {
         path: 'contact',
-        canActivate: [AdminGuard],
         loadChildren: () => import('./contact/components/contact.module').then(m => m.ContactModule)
       }, 
       {
@@ -34,13 +32,13 @@ const routes: Routes = [
       },
       {
         path: 'demo',
-        canActivate: [AdminGuard],
         loadChildren: () => import('./demo/components/demo.module').then(m => m.DemoModule)
       }
     ]
   },
   {
     path: 'admin',
+    canActivate: [AdminGuard],
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
   },
   {

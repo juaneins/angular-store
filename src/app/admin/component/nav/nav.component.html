@@ -6,9 +6,11 @@
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item routerLink="/admin/create">Crear Producto</a>
-      <a mat-list-item routerLink="/admin/dashboard">Home</a>
+      <a mat-list-item routerLink="/admin">Home</a>
+      <a mat-list-item routerLink="/admin/dashboard">Dashboard</a>
       <a mat-list-item routerLink="/admin/table">Inventario</a>
       <a mat-list-item routerLink="/admin/products">Productos</a>
+      <button mat-raised-button color="primary" (click)="logout()">Cerrar Sesión</button>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
