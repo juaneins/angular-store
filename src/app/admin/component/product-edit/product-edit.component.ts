@@ -3,6 +3,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ProductsService } from 'src/app/core/services/products/products.service';
 import { MyValidators } from 'src/app/utils/validators';
+import { Observable } from 'rxjs';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-edit',
@@ -13,9 +16,11 @@ export class ProductEditComponent implements OnInit {
 
   formulario: FormGroup;
   id: string;
+  image$: Observable<any>;
 
   constructor(private formBuilder: FormBuilder, private productsService: ProductsService,
-    private router: Router, private activatedRoute: ActivatedRoute) {
+    private router: Router, private activatedRoute: ActivatedRoute,
+    private storage : AngularFireStorage) {
     this.buildForm();
   }
 
@@ -55,5 +60,24 @@ export class ProductEditComponent implements OnInit {
       );
     }
 
+  }
+
+  uploadFile(event) {
+    const file = event.target.files[0];
+    console.log(file);
+    const name = file.name;
+    const fileRef = this.storage.ref(name);
+    const task = this.storage.upload(name, file);
+
+    task.snapshotChanges().pipe(
+      finalize(() => {
+        this.image$ = fileRef.getDownloadURL();
+        this.image$.subscribe(url => {
+          console.log(url);
+          this.formulario.get('image').setValue(url);
+        })
+      })
+    )
+      .subscribe();
   }
 }
