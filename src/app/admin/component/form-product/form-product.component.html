@@ -33,15 +33,14 @@
         <div class="row">
             <div class="col-xs">
                 <mat-form-field>
-                    <input formControlName="image" matInput type="text" placeholder="Image">
+                    <textarea formControlName="description" matInput placeholder="Ingrese la descripción"></textarea>
                 </mat-form-field>
             </div>
         </div>
         <div class="row">
             <div class="col-xs">
-                <mat-form-field>
-                    <textarea formControlName="description" matInput placeholder="Ingrese la descripción"></textarea>
-                </mat-form-field>
+                <img *ngIf="(image$ | async) as image" [src]="image" alt="">
+               <input type="file" (change)="uploadFile($event)">
             </div>
         </div>
         <mat-card-actions>
